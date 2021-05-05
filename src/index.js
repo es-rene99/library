@@ -1,14 +1,57 @@
+const LIB_STORAGE = 'libraryStorage';
+const STORAGE_TYPE = 'localStorage';
+
+function storageAvailable(type) {
+  let storage;
+  try {
+    storage = window[type];
+    const x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return e instanceof DOMException && (
+      // everything except Firefox
+      e.code === 22
+      // Firefox
+      || e.code === 1014
+      // test name field too, because code might not be present
+      // everything except Firefox
+      || e.name === 'QuotaExceededError'
+      // Firefox
+      || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
+      // acknowledge QuotaExceededError only if there's something already stored
+      && (storage && storage.length !== 0);
+  }
+}
+
 const library = {
-  libraryStorage: [],
-  addBookToLibrary(bookObj) {
-    this.libraryStorage.push(bookObj);
+  [LIB_STORAGE]: [],
+  addBookToLibrary(bookObj, libraryParam) {
+    libraryParam.push(bookObj);
+    this.libraryStorage = libraryParam;
+    this.setLibraryStorage();
   },
   showBooksInLibraryByName() {
     return this.libraryStorage.map((book) => book.title);
   },
-  removeBookFromLibrary(index) {
-    this.libraryStorage.splice(index, 1);
+  removeBookFromLibrary(index, libraryParam) {
+    libraryParam.splice(index, 1);
+    this.libraryStorage = libraryParam;
+    this.setLibraryStorage();
   },
+  setLibraryStorage() {
+    localStorage.setItem(LIB_STORAGE, JSON.stringify(this.libraryStorage));
+  },
+  initLibraryStorage() {
+    if (!localStorage.getItem(LIB_STORAGE)) {
+      this.setLibraryStorage();
+    } else {
+      console.log(localStorage.library);
+      this.libraryStorage = JSON.parse(localStorage.getItem(LIB_STORAGE));
+    }
+  },
+  isLibraryStorageAvailable: storageAvailable(STORAGE_TYPE),
 };
 
 function Book(title, author, pagesNumber, readStatus) {
@@ -16,7 +59,7 @@ function Book(title, author, pagesNumber, readStatus) {
   this.author = author;
   this.pagesNumber = pagesNumber;
   this.readStatus = readStatus;
-  library.addBookToLibrary(this);
+  library.addBookToLibrary(this, library[LIB_STORAGE]);
 }
 
 Book.prototype = {
@@ -24,10 +67,21 @@ Book.prototype = {
   toggleReadStatus: function toggleReadStatus() { this.readStatus = !this.readStatus; },
 };
 
-// * Test refactor of library obj to join funs
+if (library.isLibraryStorageAvailable) {
+  library.initLibraryStorage();
+} else {
+  console.log('Storage not available');
+}
+
+// * TEST local storage
 
 const favBook = new Book('Leer y Escribir', 'Alberto Masferrer1', '+50', true);
 const favBook2 = new Book('Minimum Vital', 'Alberto Masferrer2', '+11', true);
 const favBook3 = new Book('Dinero Maldito', 'Alberto Masferrer3', '+10', true);
 const favBook4 = new Book('Verdad', 'Alberto Masferrer4', '+1', true);
 console.log(library.showBooksInLibraryByName());
+console.log(localStorage[LIB_STORAGE]);
+const favBook5 = new Book('Verdad2', 'Alberto Masferrer4', '+1', true);
+console.log(localStorage[LIB_STORAGE]);
+localStorage.clear();
+console.log(localStorage[LIB_STORAGE]);
