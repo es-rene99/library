@@ -40,18 +40,26 @@ const library = {
     this.libraryStorage = libraryParam;
     this.setLibraryStorage();
   },
+  isLibraryStorageAvailable: storageAvailable(STORAGE_TYPE),
   setLibraryStorage() {
-    localStorage.setItem(LIB_STORAGE, JSON.stringify(this.libraryStorage));
-  },
-  initLibraryStorage() {
-    if (!localStorage.getItem(LIB_STORAGE)) {
-      this.setLibraryStorage();
+    if (this.isLibraryStorageAvailable) {
+      localStorage.setItem(LIB_STORAGE, JSON.stringify(this.libraryStorage));
     } else {
-      console.log(localStorage.library);
-      this.libraryStorage = JSON.parse(localStorage.getItem(LIB_STORAGE));
+      console.log('Storage not available');
     }
   },
-  isLibraryStorageAvailable: storageAvailable(STORAGE_TYPE),
+  initLibraryStorage() {
+    if (this.isLibraryStorageAvailable) {
+      if (!localStorage.getItem(LIB_STORAGE)) {
+        this.setLibraryStorage();
+      } else {
+        console.log(localStorage.library);
+        this.libraryStorage = JSON.parse(localStorage.getItem(LIB_STORAGE));
+      }
+    } else {
+      console.log('Storage not available');
+    }
+  },
 };
 
 function Book(title, author, pagesNumber, readStatus) {
@@ -67,11 +75,7 @@ Book.prototype = {
   toggleReadStatus: function toggleReadStatus() { this.readStatus = !this.readStatus; },
 };
 
-if (library.isLibraryStorageAvailable) {
-  library.initLibraryStorage();
-} else {
-  console.log('Storage not available');
-}
+library.initLibraryStorage();
 
 // * TEST local storage
 
