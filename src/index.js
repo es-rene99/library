@@ -4,6 +4,8 @@ function mainApp() {
   const MAIN_LIBRARY_NAME = 'main__library';
   const mainLibraryTarget = document.querySelector(`.${MAIN_LIBRARY_NAME}`);
   let libraryStorage = [];
+  const BOOK_FIELDS = ['title', 'author', 'pages', 'finished'];
+  const CAPITALIZE_CLASS = 'title-capitalize';
 
   function storageAvailable(type) {
     let storage;
@@ -35,6 +37,7 @@ function mainApp() {
       libraryStorage = libraryParam;
       this.setLibraryStorage();
     },
+    // TODO is this one being used?
     showBooksInLibraryByName() {
       return libraryStorage.map((book) => book.title);
     },
@@ -70,15 +73,15 @@ function mainApp() {
     this.author = author;
     this.pages = pages;
     this.finished = finished;
-    libraryHandler.addBookToLibrary(this, libraryStorage);
   }
 
   Book.prototype = {
-    info: function info() { return `Title: ${this.title}, Author: ${this.author}, Pages Number: ${this.pages}, Is Already Read?: ${this.finished} `; },
     toggleFinished: function toggleFinished() { this.finished = !this.finished; },
   };
 
   const uiHandler = {
+
+    isformGeneratedAlready: false,
     populateContent() {
       if (libraryHandler.isLibraryEmpty()) {
         const libraryEmptyMsg = document.createElement('p');
@@ -92,7 +95,7 @@ function mainApp() {
           const [key, value] = bookEntries[i];
           if (key !== 'title') {
             const bookDetailContainer = document.createElement('ul');
-            bookDetailContainer.innerHTML = `<li class="title-capitalize">${key}:`;
+            bookDetailContainer.innerHTML = `<li class="${CAPITALIZE_CLASS}">${key}:`;
             bookDetailContainer.innerHTML += `\n${value}</li>`;
             bookDetails.appendChild(bookDetailContainer);
           }
@@ -114,23 +117,85 @@ function mainApp() {
         // bookInfoContainer
         const bookDetails = createBookDetails(book);
 
+        // TODO I could do an object that contains bookContainerParts and add these 3
+        const bookDeleteButton = document.createElement('button');
+
         bookContainer.appendChild(bookTitle);
         bookContainer.appendChild(bookDetails);
+        bookContainer.appendChild(bookDeleteButton);
         mainLibraryTarget.appendChild(bookContainer);
       });
     },
+    generateAddBookFormFields() {
+      const newBookForm = document.querySelector('.new-book-form');
+      function getFLabel(field) {
+        return `f${field}`;
+      }
+      // TODO would like to do a reusable loop
+      // https://stackoverflow.com/questions/12135249/define-a-loop-as-a-function-to-reuse
+
+      // TODO would like to have dynamic fields for constructors
+      BOOK_FIELDS.forEach((field) => {
+        const bookFieldLabel = document.createElement('label');
+        const fLabel = getFLabel(field);
+        bookFieldLabel.setAttribute('for', fLabel);
+        bookFieldLabel.setAttribute('class', CAPITALIZE_CLASS);
+        bookFieldLabel.textContent = `${field}:`;
+        // TODO need to do them vertical
+        const bookFieldInput = document.createElement('input');
+        let inputType;
+        if (field === 'pages') {
+          inputType = 'number';
+        } else if (field === 'finished') {
+          inputType = 'checkbox';
+        } else {
+          inputType = 'text';
+        }
+        bookFieldInput.setAttribute('type', inputType);
+        bookFieldInput.setAttribute('id', fLabel);
+        newBookForm.appendChild(bookFieldLabel);
+        newBookForm.appendChild(bookFieldInput);
+      });
+      newBookForm.insertAdjacentHTML('beforeend', '<button type="submit" id="new-book-form__submit" class="new-book-form__submit">Submit</button>');
+      newBookForm.onsubmit = () => {
+        const newBookParams = BOOK_FIELDS.map((field) => {
+          const fLabel = getFLabel(field);
+          return document.getElementById(fLabel).value;
+        });
+        const newBook = new Book(
+          newBookParams[0], newBookParams[1], newBookParams[2], newBookParams[3],
+        );
+        libraryHandler.addBookToLibrary(newBook, libraryStorage);
+      };
+      uiHandler.isformGeneratedAlready = true;
+    },
+
+    activateEventListeners() {
+      const modal = document.getElementById('add-book-form__modal');
+      const btn = document.getElementById('open-add-book-form__btn');
+      const span = document.getElementsByClassName('close')[0];
+      btn.onclick = () => {
+        if (!uiHandler.isformGeneratedAlready) {
+          this.generateAddBookFormFields();
+        }
+        modal.style.display = 'block';
+      };
+      span.onclick = () => {
+        modal.style.display = 'none';
+      };
+      window.onclick = (event) => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      };
+    },
   };
-  // * TEST UI population of contents
-  const favBook = new Book('Leer y Escribir', 'Alberto Masferrer1', '+50', true);
-  const favBook2 = new Book('Minimum Vital', 'Alberto Masferrer2', '+11', true);
-  const favBook3 = new Book('Dinero Maldito', 'Alberto Masferrer3', '+10', true);
-  const favBook4 = new Book('Verdad', 'Alberto Masferrer4', '+1', true);
-  localStorage.clear();
 
   return {
     init() {
       libraryHandler.initLibraryStorage();
       uiHandler.populateContent();
+      uiHandler.activateEventListeners();
     },
   };
 }
