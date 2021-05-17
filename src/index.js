@@ -106,7 +106,7 @@ function mainApp() {
 
       libraryStorage.forEach((book, index) => {
         // Common things that every book element should have
-        const bookContainer = document.createElement('article');
+        const bookContainer = document.createElement('form');
         bookContainer.setAttribute('data-book-index', index);
         bookContainer.setAttribute('class', 'library__book');
 
@@ -118,11 +118,16 @@ function mainApp() {
         const bookDetails = createBookDetails(book);
 
         // TODO I could do an object that contains bookContainerParts and add these 3
-        const bookDeleteButton = document.createElement('button');
+        const bookRemoveButton = document.createElement('button');
+        bookRemoveButton.setAttribute('type', 'submit');
+        bookRemoveButton.innerHTML = 'Delete';
+        bookRemoveButton.onclick = () => {
+          libraryHandler.removeBookFromLibrary(index, libraryStorage);
+        };
 
         bookContainer.appendChild(bookTitle);
         bookContainer.appendChild(bookDetails);
-        bookContainer.appendChild(bookDeleteButton);
+        bookContainer.appendChild(bookRemoveButton);
         mainLibraryTarget.appendChild(bookContainer);
       });
     },
