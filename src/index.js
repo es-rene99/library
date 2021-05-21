@@ -76,7 +76,9 @@ function mainApp() {
   }
 
   Book.prototype = {
-    toggleFinished: function toggleFinished() { this.finished = !this.finished; },
+    toggleFinished: function toggleFinished() {
+      this.finished = (this.finished === 'Yes') ? 'No' : 'Yes';
+    },
   };
 
   const uiHandler = {
@@ -117,17 +119,35 @@ function mainApp() {
         // bookInfoContainer
         const bookDetails = createBookDetails(book);
 
+        function createBookControlBtn(buttonType, bookIndex) {
+          const bookButton = document.createElement('button');
+          bookButton.setAttribute('type', 'submit');
+          bookButton.setAttribute('id', `book-${buttonType}btn-${bookIndex}`);
+          bookButton.setAttribute('class', `book-${buttonType}btn`);
+          bookButton.innerText = buttonType;
+          bookButton.onclick = () => {
+            if (buttonType === 'Remove') {
+              libraryHandler.removeBookFromLibrary(index, libraryStorage);
+            } else if (buttonType === 'Toggle Finished Status') {
+              book.toggleFinished();
+            }
+          };
+          return bookButton;
+        }
+
+        function createBookControlButtons() {
+          const btnTypes = ['Remove', 'Toggle Finished Status'];
+          const controlButtons = btnTypes.map((btnType) => createBookControlBtn(btnType, index));
+          controlButtons.forEach((controlButton) => {
+            bookContainer.appendChild(controlButton);
+          });
+        }
+
         // TODO I could do an object that contains bookContainerParts and add these 3
-        const bookRemoveButton = document.createElement('button');
-        bookRemoveButton.setAttribute('type', 'submit');
-        bookRemoveButton.innerHTML = 'Delete';
-        bookRemoveButton.onclick = () => {
-          libraryHandler.removeBookFromLibrary(index, libraryStorage);
-        };
 
         bookContainer.appendChild(bookTitle);
         bookContainer.appendChild(bookDetails);
-        bookContainer.appendChild(bookRemoveButton);
+        createBookControlButtons(bookContainer);
         mainLibraryTarget.appendChild(bookContainer);
       });
     },
@@ -148,11 +168,17 @@ function mainApp() {
         bookFieldLabel.textContent = `${field}:`;
         // TODO need to do them vertical
         const bookFieldInput = document.createElement('input');
+        bookFieldInput.setAttribute('name', fLabel);
         let inputType;
         if (field === 'pages') {
           inputType = 'number';
         } else if (field === 'finished') {
           inputType = 'checkbox';
+          // bookFieldInput.setAttribute('value', 'Yes');
+          // const bookFieldCheckBoxDefaultValue = document.createElement('input');
+          // bookFieldCheckBoxDefaultValue.setAttribute('type', 'hidden');
+          // bookFieldCheckBoxDefaultValue.setAttribute('name', fLabel);
+          // bookFieldCheckBoxDefaultValue.setAttribute('value', 'No');
         } else {
           inputType = 'text';
         }
@@ -165,6 +191,12 @@ function mainApp() {
       newBookForm.onsubmit = () => {
         const newBookParams = BOOK_FIELDS.map((field) => {
           const fLabel = getFLabel(field);
+          if (field === 'finished') {
+            if (document.getElementById(fLabel).checked) {
+              return 'Yes';
+            }
+            return 'No';
+          }
           return document.getElementById(fLabel).value;
         });
         const newBook = new Book(
