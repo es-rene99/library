@@ -31,13 +31,25 @@ function mainApp() {
     }
   }
 
+  function Book(title, author, pages, finished) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.finished = finished;
+  }
+
+  Book.prototype = {
+    toggleFinished: function toggleFinished() {
+      this.finished = (this.finished === 'Yes') ? 'No' : 'Yes';
+    },
+  };
+
   const libraryHandler = {
     addBookToLibrary(bookObj, libraryParam) {
       libraryParam.push(bookObj);
       libraryStorage = libraryParam;
       this.setLibraryStorage();
     },
-    // TODO is this one being used?
     showBooksInLibraryByName() {
       return libraryStorage.map((book) => book.title);
     },
@@ -58,31 +70,28 @@ function mainApp() {
         if (!localStorage.getItem(LIB_STORAGE)) {
           this.setLibraryStorage();
         } else {
-          console.log(localStorage.library);
           libraryStorage = JSON.parse(localStorage.getItem(LIB_STORAGE));
+          libraryStorage.forEach((book) => {
+            Object.setPrototypeOf(book, Book.prototype);
+          });
         }
       } else {
         console.log('Storage not available');
       }
     },
+    updateBookLibrary(book, index, libraryParam) {
+      libraryStorage = libraryParam.map((bookParam, indexParam) => {
+        if (indexParam === index) {
+          return book;
+        }
+        return bookParam;
+      });
+      this.setLibraryStorage();
+    },
     isLibraryEmpty: () => libraryStorage.length === 0,
   };
 
-  function Book(title, author, pages, finished) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.finished = finished;
-  }
-
-  Book.prototype = {
-    toggleFinished: function toggleFinished() {
-      this.finished = (this.finished === 'Yes') ? 'No' : 'Yes';
-    },
-  };
-
   const uiHandler = {
-
     isformGeneratedAlready: false,
     populateContent() {
       if (libraryHandler.isLibraryEmpty()) {
@@ -130,6 +139,7 @@ function mainApp() {
               libraryHandler.removeBookFromLibrary(index, libraryStorage);
             } else if (buttonType === 'Toggle Finished Status') {
               book.toggleFinished();
+              libraryHandler.updateBookLibrary(book, index, libraryStorage);
             }
           };
           return bookButton;
@@ -174,11 +184,6 @@ function mainApp() {
           inputType = 'number';
         } else if (field === 'finished') {
           inputType = 'checkbox';
-          // bookFieldInput.setAttribute('value', 'Yes');
-          // const bookFieldCheckBoxDefaultValue = document.createElement('input');
-          // bookFieldCheckBoxDefaultValue.setAttribute('type', 'hidden');
-          // bookFieldCheckBoxDefaultValue.setAttribute('name', fLabel);
-          // bookFieldCheckBoxDefaultValue.setAttribute('value', 'No');
         } else {
           inputType = 'text';
         }
@@ -206,7 +211,6 @@ function mainApp() {
       };
       uiHandler.isformGeneratedAlready = true;
     },
-
     activateEventListeners() {
       const modal = document.getElementById('add-book-form__modal');
       const btn = document.getElementById('open-add-book-form__btn');
