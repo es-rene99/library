@@ -50,6 +50,7 @@ p {
   display: block;
   background-color: #fff5ee;
   margin: 0 auto;
+  border-top: dashed 1px black;
 }
 .header__subtitle > a:nth-child(1) {
   text-decoration: none;
@@ -80,10 +81,10 @@ h1 {
   margin: 0 auto;
   background-color: bisque;
   width: 66%;
+  padding: 2%;
 }
 .app-wrapper {
   width: 53%;
-  border: 1px dashed #00008b;
   padding: 20% 0;
   margin: 5% auto;
 }
