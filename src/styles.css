@@ -61,17 +61,14 @@ h1 {
   line-height: 21.8px;
 }
 #open-add-book-form__btn {
-  background: wheat;
   border-style: ridge;
-  width: 7.3rem;
   padding: 0.8rem;
   border-color: #000;
-}
-#open-add-book-form__btn:hover {
-  background-color: #deb887;
-  color: #fff;
-  padding: 0.9rem !important;
-  width: 7.3rem !important;
+  background: url("./resources/add.svg");
+  background-repeat: no-repeat;
+  background-position: 9px 4px;
+  width: 9.3rem;
+  text-align: right;
 }
 .header__title {
   font-size: 2rem;
