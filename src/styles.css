@@ -66,16 +66,29 @@ html {
 h1 {
   line-height: 21.8px;
 }
-#open-add-book-form__btn {
+
+.custom-icon-btns {
   border-style: ridge;
   padding: 0.8rem;
   border-color: #000;
+  width: 9.3rem;
+}
+
+.open-add-book-form__btn {
+  text-align: right;
   background: url("./resources/add.svg");
   background-repeat: no-repeat;
   background-position: 9px 4px;
-  width: 9.3rem;
-  text-align: right;
 }
+
+.credits__btn {
+  background: url("./resources/arrow.svg");
+  background-size: 1.2rem;
+  background-repeat: no-repeat;
+  background-position: 65px 15px;
+  width: 227px;
+}
+
 .header__title {
   font-size: 2rem;
   margin: 0 auto;
