@@ -82,11 +82,29 @@ h1 {
 }
 
 .credits__btn {
+  position: relative;
+  overflow: hidden;
+  width: 227px;
+  background-color: transparent;
+}
+
+.credits__btn::before {
+  content: "";
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  top: 35%;
+  left: 31%;
+  z-index: -1;
   background: url("./resources/arrow.svg");
   background-size: 1.2rem;
   background-repeat: no-repeat;
-  background-position: 65px 15px;
-  width: 227px;
+  transition: 0.1s linear;
+}
+
+.credits__btn--rotate-arow::before {
+  transform: rotate(180deg);
+  top: 17%;
 }
 
 .header__title {

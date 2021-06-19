@@ -228,6 +228,7 @@ function mainApp() {
       };
       creditsBtn.onclick = () => {
         creditsHidden.classList.toggle('credits-hidden');
+        creditsBtn.classList.toggle('credits__btn--rotate-arow');
       };
       window.onclick = (event) => {
         if (event.target === modal) {
