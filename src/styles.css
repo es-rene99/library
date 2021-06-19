@@ -85,7 +85,6 @@ h1 {
   display: inline-block;
   position: relative;
   width: 14.18rem;
-  top: -30px;
 }
 
 .credits__btn::before {
@@ -107,6 +106,22 @@ h1 {
   top: 17%;
 }
 
+.credits__msg {
+  width: 16rem;
+  margin: 0 auto;
+  text-align: left;
+  margin-bottom: 0.25rem;
+}
+
+.credits__msg-list {
+  list-style-type: square;
+}
+
+.credits__msg-end {
+  text-align: center;
+}
+/* TODO need to fix the anchors again to show blue */
+
 .header__title {
   font-size: 2rem;
   margin: 0 auto;
@@ -122,7 +137,7 @@ h1 {
   position: absolute;
   bottom: 0;
   width: 100%;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 .new-book-form {
   display: flex;
