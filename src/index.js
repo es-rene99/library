@@ -215,6 +215,8 @@ function mainApp() {
       const modal = document.getElementById('add-book-form__modal');
       const btn = document.getElementById('open-add-book-form__btn');
       const span = document.getElementsByClassName('close')[0];
+      const creditsBtn = document.querySelector('.credits__btn');
+      const creditsHidden = document.querySelector('.credits-hidden');
       btn.onclick = () => {
         if (!uiHandler.isformGeneratedAlready) {
           this.generateAddBookFormFields();
@@ -223,6 +225,9 @@ function mainApp() {
       };
       span.onclick = () => {
         modal.style.display = 'none';
+      };
+      creditsBtn.onclick = () => {
+        creditsHidden.classList.toggle('credits-hidden');
       };
       window.onclick = (event) => {
         if (event.target === modal) {
