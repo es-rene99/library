@@ -143,3 +143,42 @@ h1 {
 .credits__msg--hidden {
   display: none;
 }
+
+.view-code-btn {
+  display: flex;
+  background-image: -webkit-linear-gradient(
+    -70deg,
+    rgb(146, 194, 250),
+    rgb(221, 143, 190)
+  );
+  border-radius: 10px;
+  width: 11rem;
+  text-decoration: none;
+  color: #000;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 10px;
+  margin: 1.1rem auto 0;
+  border: 3px solid #d4cea7;
+}
+
+.view-code-btn:active {
+  width: 10rem;
+  height: 5.9rem;
+  filter: brightness(1.2);
+}
+
+.view-code-btn__icon {
+  display: block;
+  align-self: center;
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  margin-top: 1.18rem;
+  background: url(./resources/github.svg) no-repeat center;
+}
+
+.view-code-btn__label {
+  font-size: 1.2em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
