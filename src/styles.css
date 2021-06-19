@@ -57,7 +57,7 @@ p {
 }
 a {
   text-decoration: none;
-  color: #00f;
+  color: #000;
 }
 html {
   background-color: #fff8dc;
@@ -86,7 +86,6 @@ h1 {
   position: relative;
   width: 14.18rem;
   top: -30px;
-  color: #000;
 }
 
 .credits__btn::before {
@@ -117,14 +116,12 @@ h1 {
 }
 .app-wrapper {
   width: 53%;
-  padding: 20% 0;
-  margin: 5% auto;
+  margin: 0 auto;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2.9rem;
   margin-top: 2rem;
 }
 .new-book-form {
@@ -143,6 +140,6 @@ h1 {
   margin: 0 auto;
   padding: 12px;
 }
-.credits-hidden {
+.credits__msg--hidden {
   display: none;
 }
