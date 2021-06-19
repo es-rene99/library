@@ -82,10 +82,11 @@ h1 {
 }
 
 .credits__btn {
+  display: inline-block;
   position: relative;
-  overflow: hidden;
-  width: 227px;
-  background-color: transparent;
+  width: 14.18rem;
+  top: -30px;
+  color: #000;
 }
 
 .credits__btn::before {
@@ -94,7 +95,7 @@ h1 {
   width: 1.2rem;
   height: 1.2rem;
   top: 35%;
-  left: 31%;
+  left: 25%;
   z-index: -1;
   background: url("./resources/arrow.svg");
   background-size: 1.2rem;
