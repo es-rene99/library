@@ -55,10 +55,6 @@ p {
 .header__subtitle > a:nth-child(1) {
   text-decoration: none;
 }
-a {
-  text-decoration: none;
-  color: #000;
-}
 html {
   background-color: #fff8dc;
   text-align: center;
@@ -66,7 +62,9 @@ html {
 h1 {
   line-height: 21.8px;
 }
-
+a {
+  text-decoration: none;
+}
 .custom-icon-btns {
   border-style: ridge;
   padding: 0.8rem;
@@ -119,8 +117,8 @@ h1 {
 
 .credits__msg-end {
   text-align: center;
+  margin-top: -0.87rem;
 }
-/* TODO need to fix the anchors again to show blue */
 
 .header__title {
   font-size: 2rem;
@@ -196,4 +194,8 @@ h1 {
 .view-code-btn__label {
   font-size: 1.2em;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.no-style-anchor {
+  color: #000;
+  text-decoration: none;
 }
