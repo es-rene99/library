@@ -126,10 +126,12 @@ a {
   background-color: bisque;
   width: 66%;
   padding: 2%;
+  margin-top: 6%;
 }
 .app-wrapper {
   width: 53%;
   margin: 0 auto;
+  margin-top: 25vh;
 }
 .footer {
   position: absolute;
@@ -164,36 +166,37 @@ a {
     rgb(146, 194, 250),
     rgb(221, 143, 190)
   );
-  border-radius: 10px;
-  width: 11rem;
+  width: 7rem;
+  height: 4rem;
   text-decoration: none;
   color: #000;
   justify-content: space-evenly;
   align-items: center;
   padding-bottom: 10px;
   margin: 1.1rem auto 0;
-  border: 3px solid #d4cea7;
+  border: 1px solid #000;
 }
 
 .view-code-btn:active {
-  width: 10rem;
-  height: 5.9rem;
   filter: brightness(1.2);
 }
 
 .view-code-btn__icon {
   display: block;
   align-self: center;
-  width: 4rem;
-  height: 4rem;
+  width: 4.7rem;
+  height: 3rem;
   padding: 0;
-  margin-top: 1.18rem;
+  margin-top: 0.58rem;
   background: url(./resources/github.svg) no-repeat center;
+  margin-left: 0.6rem;
 }
 
 .view-code-btn__label {
-  font-size: 1.2em;
+  font-size: 1em;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-left: 0.66rem;
+  margin-top: 1.4rem;
 }
 .no-style-anchor {
   color: #000;
