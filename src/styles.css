@@ -5,7 +5,6 @@
   text-transform: capitalize;
 }
 .add-book-form__modal {
-  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -15,7 +14,18 @@
   overflow: auto;
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
 }
+
+.add-book-form__modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .add-book-form__modal-container {
   background-color: #fefefe;
   margin: 15% auto;
@@ -26,7 +36,7 @@
   width: 76%;
   margin: 21% auto;
 }
-.close {
+.add-book-form__modal-close {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -34,8 +44,8 @@
   float: right;
   margin-right: 12px;
 }
-.close:hover,
-.close:focus {
+.add-book-form__modal-close:hover,
+.add-book-form__modal-close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -77,6 +87,9 @@ a {
   background: url("./resources/add.svg");
   background-repeat: no-repeat;
   background-position: 9px 4px;
+  display: inline-block;
+  padding: 0.5rem;
+  color: #000;
 }
 
 .credits__btn {
@@ -158,7 +171,6 @@ a {
 .credits__msg--hidden {
   display: none;
 }
-
 .view-code-btn {
   display: flex;
   background-image: -webkit-linear-gradient(

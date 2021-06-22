@@ -212,28 +212,17 @@ function mainApp() {
       uiHandler.isformGeneratedAlready = true;
     },
     activateEventListeners() {
-      const modal = document.getElementById('add-book-form__modal');
       const btn = document.getElementById('open-add-book-form__btn');
-      const span = document.getElementsByClassName('close')[0];
       const creditsBtn = document.querySelector('.credits__btn');
       const creditsHidden = document.querySelector('.credits__msg--hidden');
       btn.onclick = () => {
         if (!uiHandler.isformGeneratedAlready) {
           this.generateAddBookFormFields();
         }
-        modal.style.display = 'block';
-      };
-      span.onclick = () => {
-        modal.style.display = 'none';
       };
       creditsBtn.onclick = () => {
         creditsHidden.classList.toggle('credits__msg--hidden');
         creditsBtn.classList.toggle('credits__btn--rotate-arow');
-      };
-      window.onclick = (event) => {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
       };
     },
   };
