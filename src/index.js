@@ -165,6 +165,7 @@ function mainApp() {
       const newBookForm = document.querySelector('.new-book-form');
       const newBookFormFieldSet = document.createElement('fieldset');
       const newBookFormHeader = document.createElement('legend');
+      const newBookFormFieldsContainer = document.createElement('div');
       function getFLabel(field) {
         return `f${field}`;
       }
@@ -172,6 +173,7 @@ function mainApp() {
       // https://stackoverflow.com/questions/12135249/define-a-loop-as-a-function-to-reuse
       newBookFormHeader.classList.add('new-book-form__fieldset');
       newBookFormHeader.classList.add('new-book-form__legend');
+      newBookFormFieldsContainer.classList.add('new-book-form__fields-container');
       newBookFormHeader.textContent = 'Add New Book';
       newBookFormFieldSet.appendChild(newBookFormHeader);
 
@@ -200,8 +202,9 @@ function mainApp() {
         bookFieldInput.setAttribute('id', fLabel);
         bookFieldDiv.appendChild(bookFieldLabel);
         bookFieldDiv.appendChild(bookFieldInput);
-        newBookFormFieldSet.appendChild(bookFieldDiv);
+        newBookFormFieldsContainer.appendChild(bookFieldDiv);
       });
+      newBookFormFieldSet.appendChild(newBookFormFieldsContainer);
       newBookForm.appendChild(newBookFormFieldSet);
       newBookForm.insertAdjacentHTML('beforeend', '<button type="submit" id="new-book-form__submit" class="new-book-form__submit">Submit</button>');
       newBookForm.onsubmit = () => {

@@ -29,7 +29,7 @@
 .add-book-form__modal-container {
   background-color: #fefefe;
   margin: 15% auto;
-  padding: 20px;
+  padding: 5px;
   border: 1px solid #888;
   width: 80%;
   background-image: linear-gradient(
@@ -37,8 +37,8 @@
     rgba(245, 245, 220, 1) 23.6%,
     rgba(231, 231, 231, 1) 130.2%
   );
-  width: 76%;
-  margin: 21% auto;
+  width: 78%;
+  margin: 25% auto;
   border-radius: 20px;
 }
 .new-book-form__legend {
@@ -50,8 +50,8 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
-  margin-right: -1.9rem;
-  margin-top: -1.7rem;
+  margin-right: -0.9rem;
+  margin-top: -1rem;
   /* New */
   background: #606061;
   color: #fff;
@@ -112,6 +112,7 @@ a {
   display: inline-block;
   padding: 0.5rem;
   color: #000;
+  width: 160px;
 }
 
 .credits__btn {
@@ -175,21 +176,26 @@ a {
   margin: 2rem 0;
 }
 .new-book-form {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 10%;
+  padding: 2%;
 }
 
-.new-book-form__field-container {
-  display: flex;
-  margin: 10px 0;
+.new-book-form__fieldset {
+  margin: 0 auto;
 }
+
+.new-book-form__fields-container {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+}
+
 .new-book-form__field-container > input {
-  position: absolute;
-  left: 156px;
-  margin-top: 5px;
-  width: 134px;
+  display: block;
+}
+
+.new-book-form__field-container > label {
+  text-align: left;
+  display: block;
 }
 
 #fpages {
@@ -204,6 +210,7 @@ a {
   border-radius: 0.5rem;
   color: #fff;
   cursor: pointer;
+  margin-top: 0.6rem;
 }
 .credits__msg--hidden {
   display: none;
