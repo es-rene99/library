@@ -163,21 +163,28 @@ function mainApp() {
     },
     generateAddBookFormFields() {
       const newBookForm = document.querySelector('.new-book-form');
+      const newBookFormHeader = document.createElement('h1');
       function getFLabel(field) {
         return `f${field}`;
       }
       // TODO would like to do a reusable loop
       // https://stackoverflow.com/questions/12135249/define-a-loop-as-a-function-to-reuse
+      newBookFormHeader.classList.add('new-book-form__header');
+      newBookFormHeader.textContent = 'Add New Book';
+      newBookForm.appendChild(newBookFormHeader);
 
       // TODO would like to have dynamic fields for constructors
       BOOK_FIELDS.forEach((field) => {
+        const bookFieldDiv = document.createElement('div');
         const bookFieldLabel = document.createElement('label');
+        const bookFieldInput = document.createElement('input');
         const fLabel = getFLabel(field);
+
+        bookFieldDiv.classList.add(`${fLabel}-container`, 'new-book-form__field-container');
         bookFieldLabel.setAttribute('for', fLabel);
         bookFieldLabel.setAttribute('class', CAPITALIZE_CLASS);
         bookFieldLabel.textContent = `${field}:`;
         // TODO need to do them vertical
-        const bookFieldInput = document.createElement('input');
         bookFieldInput.setAttribute('name', fLabel);
         let inputType;
         if (field === 'pages') {
@@ -189,8 +196,9 @@ function mainApp() {
         }
         bookFieldInput.setAttribute('type', inputType);
         bookFieldInput.setAttribute('id', fLabel);
-        newBookForm.appendChild(bookFieldLabel);
-        newBookForm.appendChild(bookFieldInput);
+        bookFieldDiv.appendChild(bookFieldLabel);
+        bookFieldDiv.appendChild(bookFieldInput);
+        newBookForm.appendChild(bookFieldDiv);
       });
       newBookForm.insertAdjacentHTML('beforeend', '<button type="submit" id="new-book-form__submit" class="new-book-form__submit">Submit</button>');
       newBookForm.onsubmit = () => {
