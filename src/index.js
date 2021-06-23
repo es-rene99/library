@@ -163,15 +163,17 @@ function mainApp() {
     },
     generateAddBookFormFields() {
       const newBookForm = document.querySelector('.new-book-form');
-      const newBookFormHeader = document.createElement('h1');
+      const newBookFormFieldSet = document.createElement('fieldset');
+      const newBookFormHeader = document.createElement('legend');
       function getFLabel(field) {
         return `f${field}`;
       }
       // TODO would like to do a reusable loop
       // https://stackoverflow.com/questions/12135249/define-a-loop-as-a-function-to-reuse
-      newBookFormHeader.classList.add('new-book-form__header');
+      newBookFormHeader.classList.add('new-book-form__fieldset');
+      newBookFormHeader.classList.add('new-book-form__legend');
       newBookFormHeader.textContent = 'Add New Book';
-      newBookForm.appendChild(newBookFormHeader);
+      newBookFormFieldSet.appendChild(newBookFormHeader);
 
       // TODO would like to have dynamic fields for constructors
       BOOK_FIELDS.forEach((field) => {
@@ -198,8 +200,9 @@ function mainApp() {
         bookFieldInput.setAttribute('id', fLabel);
         bookFieldDiv.appendChild(bookFieldLabel);
         bookFieldDiv.appendChild(bookFieldInput);
-        newBookForm.appendChild(bookFieldDiv);
+        newBookFormFieldSet.appendChild(bookFieldDiv);
       });
+      newBookForm.appendChild(newBookFormFieldSet);
       newBookForm.insertAdjacentHTML('beforeend', '<button type="submit" id="new-book-form__submit" class="new-book-form__submit">Submit</button>');
       newBookForm.onsubmit = () => {
         const newBookParams = BOOK_FIELDS.map((field) => {
