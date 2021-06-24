@@ -202,6 +202,7 @@ a {
   width: 3.9rem;
 }
 .new-book-form__submit {
+  display: block;
   background-color: #f4ab54;
   width: 6.5rem;
   margin: 0 auto;

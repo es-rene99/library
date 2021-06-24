@@ -206,8 +206,9 @@ function mainApp() {
       });
       newBookFormFieldSet.appendChild(newBookFormFieldsContainer);
       newBookForm.appendChild(newBookFormFieldSet);
-      newBookForm.insertAdjacentHTML('beforeend', '<button type="submit" id="new-book-form__submit" class="new-book-form__submit">Submit</button>');
-      newBookForm.onsubmit = () => {
+      newBookForm.insertAdjacentHTML('beforeend', '<a href="./index.html" id="new-book-form__submit" class="new-book-form__submit">Submit</a>');
+      const newBookFormSubmitAnchor = document.querySelector('#new-book-form__submit');
+      newBookFormSubmitAnchor.onclick = () => {
         const newBookParams = BOOK_FIELDS.map((field) => {
           const fLabel = getFLabel(field);
           if (field === 'finished') {
