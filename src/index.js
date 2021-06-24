@@ -141,6 +141,7 @@ function mainApp() {
               book.toggleFinished();
               libraryHandler.updateBookLibrary(book, index, libraryStorage);
             }
+            window.location.reload();
           };
           return bookButton;
         }
