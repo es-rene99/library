@@ -46,20 +46,17 @@
 }
 
 .add-book-form__modal-close {
-  color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
   margin-right: -0.9rem;
   margin-top: -1rem;
-  /* New */
   background: #606061;
   color: #fff;
   line-height: 1.5rem;
   text-align: center;
   width: 1.5rem;
   text-decoration: none;
-  font-weight: bold;
   border-radius: 12px;
   box-shadow: 1px 1px 3px #000;
 }
@@ -68,8 +65,6 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
-
-  /* new */
   background: #00d9ff;
 }
 h1,
