@@ -96,22 +96,23 @@ function mainApp() {
     populateContent() {
       if (libraryHandler.isLibraryEmpty()) {
         const libraryEmptyMsg = document.createElement('p');
+        libraryEmptyMsg.classList.add('main__library-header');
         libraryEmptyMsg.textContent = 'Library is empty';
         mainLibraryTarget.appendChild(libraryEmptyMsg);
       }
       function createBookDetails(book) {
         const bookDetails = document.createElement('div');
+        bookDetails.classList.add('library__book-details-container');
         const bookEntries = Object.entries(book);
+        const bookDetailContainer = document.createElement('ul');
+        bookDetailContainer.classList.add('library__book-detail-list');
         for (let i = 0; i < bookEntries.length; i++) {
           const [key, value] = bookEntries[i];
           if (key !== 'title') {
-            const bookDetailContainer = document.createElement('ul');
-            bookDetailContainer.innerHTML = `<li class="${CAPITALIZE_CLASS}">${key}:`;
-            bookDetailContainer.innerHTML += `\n${value}</li>`;
-            bookDetails.appendChild(bookDetailContainer);
+            bookDetailContainer.innerHTML += `<li class="library__book-detail-item"><div class="${CAPITALIZE_CLASS}">${key}:</div> <div class="${CAPITALIZE_CLASS}">${value}</div></li>`;
           }
         }
-
+        bookDetails.appendChild(bookDetailContainer);
         return bookDetails;
       }
 
