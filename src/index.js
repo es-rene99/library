@@ -93,6 +93,9 @@ function mainApp() {
 
   const uiHandler = {
     isformGeneratedAlready: false,
+    addAriaLabel(element, ariaLabel) {
+      element.setAttribute('aria-label', ariaLabel);
+    },
     populateContent() {
       if (libraryHandler.isLibraryEmpty()) {
         const libraryEmptyMsg = document.createElement('p');
@@ -132,9 +135,20 @@ function mainApp() {
         function createBookControlBtn(buttonType, bookIndex) {
           const bookButton = document.createElement('button');
           bookButton.setAttribute('type', 'submit');
-          bookButton.setAttribute('id', `book-${buttonType}btn-${bookIndex}`);
-          bookButton.setAttribute('class', `book-${buttonType}btn`);
-          bookButton.innerText = buttonType;
+          const buttonTypeAttrName = buttonType.replace(/\s+/g, '-').toLowerCase();
+          bookButton.setAttribute('id', `book-${buttonTypeAttrName}-btn-${bookIndex}`);
+          bookButton.setAttribute('class', `book-${buttonTypeAttrName}-btn`);
+          const bookButtonIcon = document.createElement('i');
+          uiHandler.addAriaLabel(bookButton, buttonType);
+
+          if (buttonType === 'Remove') {
+            bookButtonIcon.classList.add('las', 'la-trash');
+          } else if (buttonType === 'Toggle Finished Status') {
+            bookButtonIcon.classList.add('las', 'la-sync-alt');
+          }
+
+          bookButton.appendChild(bookButtonIcon);
+          // bookButton.innerText = buttonType;
           bookButton.onclick = () => {
             if (buttonType === 'Remove') {
               libraryHandler.removeBookFromLibrary(index, libraryStorage);
@@ -142,6 +156,7 @@ function mainApp() {
               book.toggleFinished();
               libraryHandler.updateBookLibrary(book, index, libraryStorage);
             }
+
             window.location.reload();
           };
           return bookButton;

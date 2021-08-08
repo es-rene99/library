@@ -1,81 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library</title>
-    <link rel="stylesheet" href="./src/sanitize.css" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="stylesheet" href="./src/styles.css" />
-  </head>
-  <body>
-    <header class="header">
-      <a class="no-style-anchor" href="./index.html"
-        ><h1 id="library-title" class="header__title">Library</h1></a
-      >
-      <span class="header__subtitle"
-        >By
-        <a href="https://github.com/es-rene99" target="_blank"
-          >es-rene99</a
-        ></span
-      >
-    </header>
-    <div class="app-wrapper">
-      <main class="main">
-        <div class="main__library"></div>
-      </main>
-      <a
-        type="button"
-        id="open-add-book-form__btn"
-        class="custom-icon-btns open-add-book-form__btn"
-        href="#add-book-form__modal"
-      >
-        Add new book
-      </a>
-      <div id="add-book-form__modal" class="add-book-form__modal">
-        <div class="add-book-form__modal-container">
-          <a class="add-book-form__modal-close" href="#close">&times;</a>
-          <form class="new-book-form"></form>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library</title>
+  <link rel="stylesheet" href="./src/sanitize.css" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="stylesheet" href="./src/styles.css" />
+  <link rel="stylesheet"
+    href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <a class="no-style-anchor" href="./index.html">
+      <h1 id="library-title" class="header__title">Library</h1>
+    </a>
+    <span class="header__subtitle">By
+      <a href="https://github.com/es-rene99" target="_blank">es-rene99</a></span>
+  </header>
+  <div class="app-wrapper">
+    <main class="main">
+      <div class="main__library"></div>
+    </main>
+    <a type="button" id="open-add-book-form__btn" class="custom-icon-btns open-add-book-form__btn"
+      href="#add-book-form__modal">
+      Add new book
+    </a>
+    <div id="add-book-form__modal" class="add-book-form__modal">
+      <div class="add-book-form__modal-container">
+        <a class="add-book-form__modal-close" href="#close">&times;</a>
+        <form class="new-book-form"></form>
       </div>
     </div>
+  </div>
 
-    <footer class="footer">
-      <div class="credit">
-        <a
-          href="#credits__btn"
-          id="credits__btn"
-          class="custom-icon-btns credits__btn no-style-anchor"
-        >
-          Credits
-        </a>
-        <div class="credits__msg credits__msg--hidden">
-          <ul class="credits__msg-list">
-            <li>Library favicon by hiddemaru</li>
-            <li>Arrow icon by Ghiyats Mujtaba</li>
-            <li>Add icon by Park Sung Hyo</li>
-            <li>Trash bin icon by ADM DESIGN</li>
-            <li>Refresh icon by Graphik Designz</li>
-          </ul>
-          <div class="credits__msg-end">
-            <span>from</span>
-            <a href="https://thenounproject.com" target="_blank"
-              >The Noun Project.</a
-            >
-          </div>
-          <a
-            href="https://github.com/es-rene99/library"
-            target="_blank"
-            class="view-code-btn"
-          >
-            <object class="view-code-btn__icon"></object>
-            <p class="view-code-btn__label">View code</p>
-          </a>
+  <footer class="footer">
+    <div class="credit">
+      <a href="#credits__btn" id="credits__btn" class="custom-icon-btns credits__btn no-style-anchor">
+        Credits
+      </a>
+      <div class="credits__msg credits__msg--hidden">
+        <ul class="credits__msg-list">
+          <li>Library favicon by hiddemaru</li>
+          <li>Arrow icon by Ghiyats Mujtaba</li>
+          <li>Add icon by Park Sung Hyo</li>
+          <li>Trash bin icon by ADM DESIGN</li>
+          <li>Refresh icon by Graphik Designz</li>
+        </ul>
+        <div class="credits__msg-end">
+          <span>from</span>
+          <a href="https://thenounproject.com" target="_blank">The Noun Project.</a>
         </div>
+        <a href="https://github.com/es-rene99/library" target="_blank" class="view-code-btn">
+          <object class="view-code-btn__icon"></object>
+          <p class="view-code-btn__label">View code</p>
+        </a>
       </div>
-    </footer>
-    <script src="./src/index.js"></script>
-    <noscript>JavaScript is disabled, please enable! </noscript>
-  </body>
+    </div>
+  </footer>
+  <script src="./src/index.js"></script>
+  <noscript>JavaScript is disabled, please enable! </noscript>
+</body>
+
 </html>
