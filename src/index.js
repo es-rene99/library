@@ -7,6 +7,13 @@ function mainApp() {
   const BOOK_FIELDS = ['title', 'author', 'pages', 'finished'];
   const CAPITALIZE_CLASS = 'title-capitalize';
 
+  const commonFunctions = {
+    toKebabCase(word) {
+      return word.replace(/\s+/g, '-').toLowerCase();
+    },
+
+  };
+
   function storageAvailable(type) {
     let storage;
     try {
@@ -135,7 +142,7 @@ function mainApp() {
         function createBookControlBtn(buttonType, bookIndex) {
           const bookButton = document.createElement('button');
           bookButton.setAttribute('type', 'submit');
-          const buttonTypeAttrName = buttonType.replace(/\s+/g, '-').toLowerCase();
+          const buttonTypeAttrName = commonFunctions.toKebabCase(buttonType);
           bookButton.setAttribute('id', `book-${buttonTypeAttrName}-btn-${bookIndex}`);
           bookButton.setAttribute('class', `book-${buttonTypeAttrName}-btn`);
           const bookButtonIcon = document.createElement('i');

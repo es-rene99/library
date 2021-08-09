@@ -236,6 +236,20 @@ li.library__book-detail-item:nth-child(3) {
   grid-column-start: 3;
 }
 
+/* TODO need to refactor into common btn styles */
+
+.book-remove-btn {
+  float: right;
+  position: relative;
+  bottom: 8rem;
+  right: 0.2rem;
+  background: none;
+  border: none;
+  font-size: 1.9rem;
+  color: gray;
+  cursor: pointer;
+}
+
 .credits__msg--hidden {
   display: none;
 }
