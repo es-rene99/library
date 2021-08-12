@@ -145,6 +145,7 @@ function mainApp() {
           const buttonTypeAttrName = commonFunctions.toKebabCase(buttonType);
           bookButton.setAttribute('id', `book-${buttonTypeAttrName}-btn-${bookIndex}`);
           bookButton.setAttribute('class', `book-${buttonTypeAttrName}-btn`);
+          bookButton.classList.add('book-btn');
           const bookButtonIcon = document.createElement('i');
           uiHandler.addAriaLabel(bookButton, buttonType);
 

@@ -236,18 +236,25 @@ li.library__book-detail-item:nth-child(3) {
   grid-column-start: 3;
 }
 
-/* TODO need to refactor into common btn styles */
-
-.book-remove-btn {
+.book-btn {
   float: right;
   position: relative;
-  bottom: 8rem;
-  right: 0.2rem;
   background: none;
   border: none;
+  cursor: pointer;
+}
+
+.book-remove-btn {
+  bottom: 8rem;
+  right: 0.2rem;
   font-size: 1.9rem;
   color: gray;
-  cursor: pointer;
+}
+
+.book-toggle-finished-status-btn {
+  bottom: 3.3rem;
+  left: 1.9rem;
+  font-size: 1.4rem;
 }
 
 .credits__msg--hidden {
