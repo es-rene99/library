@@ -234,6 +234,8 @@ li.library__book-detail-item:nth-child(2) {
 }
 li.library__book-detail-item:nth-child(3) {
   grid-column-start: 3;
+  justify-content: end;
+  margin-right: 2rem;
 }
 
 .book-btn {
@@ -252,9 +254,9 @@ li.library__book-detail-item:nth-child(3) {
 }
 
 .book-toggle-finished-status-btn {
-  bottom: 3.3rem;
+  bottom: 2.5rem;
   left: 1.9rem;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
 }
 
 .credits__msg--hidden {
